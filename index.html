@@ -118,7 +118,7 @@
             background-image: url('mata_template_1.jpg');
         }
 
-        /* GAYA TEKS & SUSUNAN BARIS DEMI BARIS */
+        /* GAYA TEKS UNTUK MAKLUMAT */
         .card-field {
             position: absolute;
             color: #ffffff;
@@ -130,32 +130,37 @@
             text-transform: uppercase;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
             line-height: 1;
-            left: 380px; /* Diseragamkan kedudukan melintang supaya selari ke bawah */
         }
 
-        /* KEDUDUKAN MENEGAK (TOP) UNTUK SETIAP BARIS KAD */
+        /* KOORDINAT SELEPAS TITIK BERTINDIH + ONE SPACE */
         #out-nama {
-            top: 107px;  /* Baris 1: NAMA */
+            top: 110px;
+            left: 312px; /* Selepas NAMA: */
         }
 
         #out-id {
-            top: 140px;  /* Baris 2: NO ID */
+            top: 143px;
+            left: 326px; /* Asal dikekalkan */
         }
 
         #out-teras {
-            top: 173px;  /* Baris 3: TERAS KHAS */
+            top: 176px;
+            left: 357px; /* Selepas TERAS KHAS: */
         }
 
         #out-negara {
-            top: 206px;  /* Baris 4: NEGARA */
+            top: 210px;
+            left: 324px; /* Selepas NEGARA: */
         }
 
         #out-tarikh {
-            top: 239px;  /* Baris 5: TARIKH */
+            top: 243px;
+            left: 314px; /* Selepas TARIKH: */
         }
 
         #out-status {
-            top: 272px;  /* Baris 6: STATUS */
+            top: 276px;
+            left: 331px; /* Asal dikekalkan */
         }
 
         @media (max-width: 650px) {
@@ -165,14 +170,13 @@
             }
             .card-field {
                 font-size: 7.5px;
-                left: 222px;
             }
-            #out-nama { top: 62px; }
-            #out-id { top: 81px; }
-            #out-teras { top: 101px; }
-            #out-negara { top: 120px; }
-            #out-tarikh { top: 139px; }
-            #out-status { top: 158px; }
+            #out-nama { top: 64px; left: 182px; }
+            #out-id { top: 83px; left: 191px; }
+            #out-teras { top: 103px; left: 209px; }
+            #out-negara { top: 122px; left: 189px; }
+            #out-tarikh { top: 142px; left: 183px; }
+            #out-status { top: 161px; left: 193px; }
         }
     </style>
 </head>
