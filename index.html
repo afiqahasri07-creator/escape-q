@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penjana Kad M.A.T.A.</title>
+    <!-- html2canvas library untuk memuat turun kad sebagai gambar -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b132b;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #00f2fe;
+            text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            align-items: flex-start;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* BAHAGIAN BORANG INPUT */
+        .form-container {
+            background: rgba(28, 37, 65, 0.9);
+            border: 2px solid #00f2fe;
+            border-radius: 12px;
+            padding: 25px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            color: #4cc9f0;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #4cc9f0;
+            background: #0b132b;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input:focus, select:focus {
+            border-color: #00f2fe;
+            box-shadow: 0 0 8px rgba(0, 242, 254, 0.5);
+        }
+
+        .btn-download {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #00f2fe, #4facfe);
+            border: none;
+            border-radius: 6px;
+            color: #000;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-download:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.8);
+        }
+
+        /* BAHAGIAN PRATONTON KAD */
+        .preview-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Kad mengikut nisbah tepat templat 1000x600 */
+        .card-wrapper {
+            position: relative;
+            width: 600px;
+            height: 360px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+            background-image: url('mata_template_1.jpg');
+        }
+
+        /* Posisi teks jawapan menindih titik bertindih di templat */
+        .card-field {
+            position: absolute;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Kedudukan koordinat mengikut rekaan templat asal */
+        #out-nama {
+            top: 30.2%;
+            left: 48.5%;
+        }
+
+        #out-teras {
+            top: 48.8%;
+            left: 54.5%;
+        }
+
+        #out-negara {
+            top: 58.2%;
+            left: 51.0%;
+        }
+
+        #out-tarikh {
+            top: 67.5%;
+            left: 50.0%;
+        }
+
+        @media (max-width: 650px) {
+            .card-wrapper {
+                width: 350px;
+                height: 210px;
+            }
+            .card-field {
+                font-size: 8.5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>PENJANA KAD ID M.A.T.A.</h1>
+
+    <div class="container">
+        <!-- BORANG MASUKKAN MAKLUMAT -->
+        <div class="form-container">
+            <div class="form-group">
+                <label for="in-template">PILIH TEMPLAT EJEN</label>
+                <select id="in-template">
+                    <option value="mata_template_1.jpg">Ejen Ali</option>
+                    <option value="mata_template_2.jpg">Ejen Alicia</option>
+                    <option value="mata_template_3.jpg">Ejen Bakar</option>
+                    <option value="mata_template_4.jpg">Ejen Rizwan</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="in-nama">NAMA EJEN</label>
+                <input type="text" id="in-nama" placeholder="Masukkan nama anda" value="NUR AFIQAH">
+            </div>
+
+            <div class="form-group">
+                <label for="in-teras">TERAS KHAS</label>
+                <select id="in-teras">
+                    <option value="NEURO">NEURO</option>
+                    <option value="INVISO">INVISO</option>
+                    <option value="COMBAT">COMBAT</option>
+                    <option value="TECHNO">TECHNO</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="in-negara">NEGARA</label>
+                <input type="text" id="in-negara" placeholder="Contoh: MALAYSIA" value="MALAYSIA">
+            </div>
+
+            <div class="form-group">
+                <label for="in-tarikh">TARIKH</label>
+                <input type="date" id="in-tarikh">
+            </div>
+
+            <button class="btn-download" onclick="downloadCard()">MUAT TURUN KAD M.A.T.A.</button>
+        </div>
+
+        <!-- PRATONTON KAD -->
+        <div class="preview-container">
+            <div class="card-wrapper" id="mata-card">
+                <div class="card-field" id="out-nama">NUR AFIQAH</div>
+                <div class="card-field" id="out-teras">NEURO</div>
+                <div class="card-field" id="out-negara">MALAYSIA</div>
+                <div class="card-field" id="out-tarikh">15/10/2026</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set tarikh hari ini secara automatik sebagai cadangan awal
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('in-tarikh').value = today;
+        updateTarikhFormat(today);
+
+        // Menukar Templat Kad
+        document.getElementById('in-template').addEventListener('change', function() {
+            document.getElementById('mata-card').style.backgroundImage = `url('${this.value}')`;
+        });
+
+        // Kemaskini Nama
+        document.getElementById('in-nama').addEventListener('input', function() {
+            document.getElementById('out-nama').textContent = this.value || 'NAMA EJEN';
+        });
+
+        // Kemaskini Teras Khas
+        document.getElementById('in-teras').addEventListener('change', function() {
+            document.getElementById('out-teras').textContent = this.value;
+        });
+
+        // Kemaskini Negara
+        document.getElementById('in-negara').addEventListener('input', function() {
+            document.getElementById('out-negara').textContent = this.value || 'MALAYSIA';
+        });
+
+        // Kemaskini Tarikh
+        document.getElementById('in-tarikh').addEventListener('change', function() {
+            updateTarikhFormat(this.value);
+        });
+
+        function updateTarikhFormat(dateString) {
+            if (!dateString) {
+                document.getElementById('out-tarikh').textContent = '';
+                return;
+            }
+            const parts = dateString.split('-');
+            if (parts.length === 3) {
+                // Format DD/MM/YYYY
+                document.getElementById('out-tarikh').textContent = `${parts[2]}/${parts[1]}/${parts[0]}`;
+            }
+        }
+
+        // Fungsi Muat Turun Gambar Kad
+        function downloadCard() {
+            const cardElement = document.getElementById('mata-card');
+            
+            html2canvas(cardElement, {
+                scale: 3, // Kualiti tinggi
+                useCORS: true,
+                logging: false
+            }).then(canvas => {
+                const link = document.createElement('a');
+                const namaEjen = document.getElementById('in-nama').value.trim() || 'EJEN';
+                link.download = `MATA_ID_${namaEjen.replace(/\s+/g, '_')}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+    </script>
+</body>
+</html>
