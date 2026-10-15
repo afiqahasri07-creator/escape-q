@@ -1,294 +1,262 @@
-<!DOCTYPE html>
-<html lang="ms">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penjana Kad M.A.T.A.</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+body {
+        background-color: #0b132b;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+    }
 
-        body {
-            background-color: #0b132b;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
+    h1 {
+        margin-bottom: 20px;
+        color: #00f2fe;
+        text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+        text-align: center;
+    }
 
-        h1 {
-            margin-bottom: 20px;
-            color: #00f2fe;
-            text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
-            text-align: center;
-        }
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+        align-items: flex-start;
+        max-width: 1200px;
+        width: 100%;
+    }
 
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-            align-items: flex-start;
-            max-width: 1200px;
-            width: 100%;
-        }
+    /* BAHAGIAN BORANG INPUT */
+    .form-container {
+        background: rgba(28, 37, 65, 0.9);
+        border: 2px solid #00f2fe;
+        border-radius: 12px;
+        padding: 25px;
+        width: 100%;
+        max-width: 400px;
+        box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+    }
 
-        /* BAHAGIAN BORANG INPUT */
-        .form-container {
-            background: rgba(28, 37, 65, 0.9);
-            border: 2px solid #00f2fe;
-            border-radius: 12px;
-            padding: 25px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
-        }
+    .form-group {
+        margin-bottom: 15px;
+    }
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        font-size: 14px;
+        color: #4cc9f0;
+    }
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            font-size: 14px;
-            color: #4cc9f0;
-        }
+    input, select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #4cc9f0;
+        background: #0b132b;
+        color: #fff;
+        font-size: 14px;
+        outline: none;
+    }
 
-        input, select {
-            width: 100%;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #4cc9f0;
-            background: #0b132b;
-            color: #fff;
-            font-size: 14px;
-            outline: none;
-        }
+    input:focus, select:focus {
+        border-color: #00f2fe;
+        box-shadow: 0 0 8px rgba(0, 242, 254, 0.5);
+    }
 
-        input:focus, select:focus {
-            border-color: #00f2fe;
-            box-shadow: 0 0 8px rgba(0, 242, 254, 0.5);
-        }
+    .btn-download {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(45deg, #00f2fe, #4facfe);
+        border: none;
+        border-radius: 6px;
+        color: #000;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 10px;
+    }
 
-        .btn-download {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(45deg, #00f2fe, #4facfe);
-            border: none;
-            border-radius: 6px;
-            color: #000;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-top: 10px;
-        }
+    .btn-download:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 15px rgba(0, 242, 254, 0.8);
+    }
 
-        .btn-download:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.8);
-        }
+    /* BAHAGIAN PRATONTON KAD */
+    .preview-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-        /* BAHAGIAN PRATONTON KAD */
-        .preview-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    .card-wrapper {
+        position: relative;
+        width: 600px;
+        height: 360px;
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+        background-image: url('mata_template_1.jpg');
+    }
 
+    /* GAYA TEKS UNTUK MAKLUMAT */
+    .card-field {
+        position: absolute;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        font-size: 13px;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+        text-transform: uppercase;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
+        line-height: 1;
+    }
+
+    /* KOORDINAT TEPAT SELEPAS TITIK BERTINDIH */
+    #out-nama {
+        top: 110px;
+        left: 260px; 
+    }
+
+    #out-teras {
+        top: 176px;
+        left: 295px; 
+    }
+
+    #out-negara {
+        top: 210px;
+        left: 265px; 
+    }
+
+    #out-tarikh {
+        top: 243px;
+        left: 265px; 
+    }
+
+    @media (max-width: 650px) {
         .card-wrapper {
-            position: relative;
-            width: 600px;
-            height: 360px;
-            background-size: 100% 100%;
-            background-position: center;
-            background-repeat: no-repeat;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
-            background-image: url('mata_template_1.jpg');
+            width: 350px;
+            height: 210px;
         }
-
-        /* GAYA TEKS UNTUK MAKLUMAT */
         .card-field {
-            position: absolute;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            font-weight: bold;
-            font-size: 13px;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-            text-transform: uppercase;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
-            line-height: 1;
+            font-size: 7.5px;
         }
+        #out-nama { top: 64px; left: 151px; }
+        #out-teras { top: 103px; left: 171px; }
+        #out-negara { top: 122px; left: 154px; }
+        #out-tarikh { top: 142px; left: 154px; }
+    }
+</style>
 
-        /* KOORDINAT SELEPAS TITIK BERTINDIH + ONE SPACE */
-        #out-nama {
-            top: 110px;
-            left: 312px; /* Selepas NAMA: */
-        }
 
-        #out-id {
-            top: 143px;
-            left: 326px; /* Asal dikekalkan */
-        }
+<h1>PENJANA KAD ID M.A.T.A.</h1>
 
-        #out-teras {
-            top: 176px;
-            left: 357px; /* Selepas TERAS KHAS: */
-        }
-
-        #out-negara {
-            top: 210px;
-            left: 324px; /* Selepas NEGARA: */
-        }
-
-        #out-tarikh {
-            top: 243px;
-            left: 314px; /* Selepas TARIKH: */
-        }
-
-        #out-status {
-            top: 276px;
-            left: 331px; /* Asal dikekalkan */
-        }
-
-        @media (max-width: 650px) {
-            .card-wrapper {
-                width: 350px;
-                height: 210px;
-            }
-            .card-field {
-                font-size: 7.5px;
-            }
-            #out-nama { top: 64px; left: 182px; }
-            #out-id { top: 83px; left: 191px; }
-            #out-teras { top: 103px; left: 209px; }
-            #out-negara { top: 122px; left: 189px; }
-            #out-tarikh { top: 142px; left: 183px; }
-            #out-status { top: 161px; left: 193px; }
-        }
-    </style>
-</head>
-<body>
-
-    <h1>PENJANA KAD ID M.A.T.A.</h1>
-
-    <div class="container">
-        <!-- BORANG INPUT -->
-        <div class="form-container">
-            <div class="form-group">
-                <label for="in-template">PILIH TEMPLAT EJEN</label>
-                <select id="in-template">
-                    <option value="mata_template_1.jpg">Ejen Ali</option>
-                    <option value="mata_template_2.jpg">Ejen Alicia</option>
-                    <option value="mata_template_3.jpg">Ejen Bakar</option>
-                    <option value="mata_template_4.jpg">Ejen Rizwan</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="in-nama">NAMA EJEN</label>
-                <input type="text" id="in-nama" placeholder="Masukkan nama anda" value="NUR AFIQAH">
-            </div>
-
-            <div class="form-group">
-                <label for="in-teras">TERAS KHAS</label>
-                <select id="in-teras">
-                    <option value="NEURO">NEURO</option>
-                    <option value="INVISO">INVISO</option>
-                    <option value="COMBAT">COMBAT</option>
-                    <option value="TECHNO">TECHNO</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="in-negara">NEGARA</label>
-                <input type="text" id="in-negara" placeholder="Contoh: MALAYSIA" value="MALAYSIA">
-            </div>
-
-            <div class="form-group">
-                <label for="in-tarikh">TARIKH</label>
-                <input type="date" id="in-tarikh">
-            </div>
-
-            <button class="btn-download" onclick="downloadCard()">MUAT TURUN KAD M.A.T.A.</button>
+<div class="container">
+    <!-- BORANG INPUT -->
+    <div class="form-container">
+        <div class="form-group">
+            <label for="in-template">PILIH TEMPLAT EJEN</label>
+            <select id="in-template">
+                <option value="mata_template_1.jpg">Ejen Ali</option>
+                <option value="mata_template_2.jpg">Ejen Alicia</option>
+                <option value="mata_template_3.jpg">Ejen Bakar</option>
+                <option value="mata_template_4.jpg">Ejen Rizwan</option>
+            </select>
         </div>
 
-        <!-- PRATONTON KAD -->
-        <div class="preview-container">
-            <div class="card-wrapper" id="mata-card">
-                <div class="card-field" id="out-nama">NUR AFIQAH</div>
-                <div class="card-field" id="out-id">M.A.T.A-07</div>
-                <div class="card-field" id="out-teras">NEURO</div>
-                <div class="card-field" id="out-negara">MALAYSIA</div>
-                <div class="card-field" id="out-tarikh">15/10/2026</div>
-                <div class="card-field" id="out-status">ACTIVE</div>
-            </div>
+        <div class="form-group">
+            <label for="in-nama">NAMA EJEN</label>
+            <input type="text" id="in-nama" placeholder="Masukkan nama anda" value="NUR AFIQAH">
         </div>
+
+        <div class="form-group">
+            <label for="in-teras">TERAS KHAS</label>
+            <select id="in-teras">
+                <option value="NEURO">NEURO</option>
+                <option value="INVISO">INVISO</option>
+                <option value="COMBAT">COMBAT</option>
+                <option value="TECHNO">TECHNO</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="in-negara">NEGARA</label>
+            <input type="text" id="in-negara" placeholder="Contoh: MALAYSIA" value="MALAYSIA">
+        </div>
+
+        <div class="form-group">
+            <label for="in-tarikh">TARIKH</label>
+            <input type="date" id="in-tarikh">
+        </div>
+
+        <button class="btn-download" onclick="downloadCard()">MUAT TURUN KAD M.A.T.A.</button>
     </div>
 
-    <script>
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('in-tarikh').value = today;
-        updateTarikhFormat(today);
+    <!-- PRATONTON KAD -->
+    <div class="preview-container">
+        <div class="card-wrapper" id="mata-card">
+            <div class="card-field" id="out-nama">NUR AFIQAH</div>
+            <div class="card-field" id="out-teras">NEURO</div>
+            <div class="card-field" id="out-negara">MALAYSIA</div>
+            <div class="card-field" id="out-tarikh">15/10/2026</div>
+        </div>
+    </div>
+</div>
 
-        document.getElementById('in-template').addEventListener('change', function() {
-            document.getElementById('mata-card').style.backgroundImage = `url('${this.value}')`;
-        });
+<script>
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('in-tarikh').value = today;
+    updateTarikhFormat(today);
 
-        document.getElementById('in-nama').addEventListener('input', function() {
-            document.getElementById('out-nama').textContent = this.value || '';
-        });
+    document.getElementById('in-template').addEventListener('change', function() {
+        document.getElementById('mata-card').style.backgroundImage = `url('${this.value}')`;
+    });
 
-        document.getElementById('in-teras').addEventListener('change', function() {
-            document.getElementById('out-teras').textContent = this.value;
-        });
+    document.getElementById('in-nama').addEventListener('input', function() {
+        document.getElementById('out-nama').textContent = this.value || '';
+    });
 
-        document.getElementById('in-negara').addEventListener('input', function() {
-            document.getElementById('out-negara').textContent = this.value || '';
-        });
+    document.getElementById('in-teras').addEventListener('change', function() {
+        document.getElementById('out-teras').textContent = this.value;
+    });
 
-        document.getElementById('in-tarikh').addEventListener('change', function() {
-            updateTarikhFormat(this.value);
-        });
+    document.getElementById('in-negara').addEventListener('input', function() {
+        document.getElementById('out-negara').textContent = this.value || '';
+    });
 
-        function updateTarikhFormat(dateString) {
-            if (!dateString) {
-                document.getElementById('out-tarikh').textContent = '';
-                return;
-            }
-            const parts = dateString.split('-');
-            if (parts.length === 3) {
-                document.getElementById('out-tarikh').textContent = `${parts[2]}/${parts[1]}/${parts[0]}`;
-            }
+    document.getElementById('in-tarikh').addEventListener('change', function() {
+        updateTarikhFormat(this.value);
+    });
+
+    function updateTarikhFormat(dateString) {
+        if (!dateString) {
+            document.getElementById('out-tarikh').textContent = '';
+            return;
         }
-
-        function downloadCard() {
-            const cardElement = document.getElementById('mata-card');
-            
-            html2canvas(cardElement, {
-                scale: 3,
-                useCORS: true,
-                logging: false
-            }).then(canvas => {
-                const link = document.createElement('a');
-                const namaEjen = document.getElementById('in-nama').value.trim() || 'EJEN';
-                link.download = `MATA_ID_${namaEjen.replace(/\s+/g, '_')}.png`;
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-            });
+        const parts = dateString.split('-');
+        if (parts.length === 3) {
+            document.getElementById('out-tarikh').textContent = `${parts[2]}/${parts[1]}/${parts[0]}`;
         }
-    </script>
-</body>
-</html>
+    }
+
+    function downloadCard() {
+        const cardElement = document.getElementById('mata-card');
+        
+        html2canvas(cardElement, {
+            scale: 3,
+            useCORS: true,
+            logging: false
+        }).then(canvas => {
+            const link = document.createElement('a');
+            const namaEjen = document.getElementById('in-nama').value.trim() || 'EJEN';
+            link.download = `MATA_ID_${namaEjen.replace(/\s+/g, '_')}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        });
+    }
+</script>
