@@ -118,38 +118,38 @@
             background-image: url('mata_template_1.jpg');
         }
 
-        /* Teks jawapan diletakkan tepat di sebelah kanan titik bertindih */
+        /* Teks jawapan dianjakkan tepat ke kanan titik bertindih */
         .card-field {
             position: absolute;
             color: #ffffff;
             font-family: Arial, sans-serif;
             font-weight: bold;
-            font-size: 13.5px;
+            font-size: 13px;
             letter-spacing: 0.5px;
             white-space: nowrap;
             text-transform: uppercase;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
         }
 
-        /* Koordinat baru yang dialihkan ke kanan selepas titik bertindih */
+        /* Kedudukan dianjak melepasi titik bertindih asal */
         #out-nama {
-            top: 30.6%;
-            left: 54.5%;
+            top: 110px;
+            left: 300px;
         }
 
         #out-teras {
-            top: 49.0%;
-            left: 60.5%;
+            top: 176px;
+            left: 335px;
         }
 
         #out-negara {
-            top: 58.2%;
-            left: 57.0%;
+            top: 209px;
+            left: 310px;
         }
 
         #out-tarikh {
-            top: 67.4%;
-            left: 55.5%;
+            top: 242px;
+            left: 305px;
         }
 
         @media (max-width: 650px) {
@@ -158,8 +158,12 @@
                 height: 210px;
             }
             .card-field {
-                font-size: 8px;
+                font-size: 7.5px;
             }
+            #out-nama { top: 64px; left: 175px; }
+            #out-teras { top: 103px; left: 195px; }
+            #out-negara { top: 122px; left: 181px; }
+            #out-tarikh { top: 141px; left: 178px; }
         }
     </style>
 </head>
