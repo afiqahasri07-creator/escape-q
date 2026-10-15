@@ -118,7 +118,7 @@
             background-image: url('mata_template_1.jpg');
         }
 
-        /* Teks jawapan dianjakkan tepat ke kanan titik bertindih */
+        /* GAYA TEKS UNTUK MAKLUMAT BAHARU */
         .card-field {
             position: absolute;
             color: #ffffff;
@@ -129,27 +129,28 @@
             white-space: nowrap;
             text-transform: uppercase;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
+            line-height: 1;
         }
 
-        /* Kedudukan dianjak melepasi titik bertindih asal */
+        /* KOORDINAT TEPAT SEBARIS DENGAN LABEL */
         #out-nama {
-            top: 110px;
-            left: 300px;
+            top: 110px;   /* Sebaris tepat dengan NAMA: */
+            left: 300px;  /* Terletak di sebelah kanan titik bertindih */
         }
 
         #out-teras {
-            top: 176px;
-            left: 335px;
+            top: 176px;   /* Sebaris tepat dengan TERAS KHAS: */
+            left: 345px;  /* Ke kanan sedikit sebab kata 'TERAS KHAS' panjang */
         }
 
         #out-negara {
-            top: 209px;
-            left: 310px;
+            top: 210px;   /* Sebaris tepat dengan NEGARA: */
+            left: 312px;  /* Terletak di sebelah kanan titik bertindih */
         }
 
         #out-tarikh {
-            top: 242px;
-            left: 305px;
+            top: 243px;   /* Sebaris tepat dengan TARIKH: */
+            left: 302px;  /* Terletak di sebelah kanan titik bertindih */
         }
 
         @media (max-width: 650px) {
@@ -161,9 +162,9 @@
                 font-size: 7.5px;
             }
             #out-nama { top: 64px; left: 175px; }
-            #out-teras { top: 103px; left: 195px; }
-            #out-negara { top: 122px; left: 181px; }
-            #out-tarikh { top: 141px; left: 178px; }
+            #out-teras { top: 103px; left: 201px; }
+            #out-negara { top: 122px; left: 182px; }
+            #out-tarikh { top: 142px; left: 176px; }
         }
     </style>
 </head>
@@ -172,7 +173,7 @@
     <h1>PENJANA KAD ID M.A.T.A.</h1>
 
     <div class="container">
-        <!-- BORANG MASUKKAN MAKLUMAT -->
+        <!-- BORANG INPUT -->
         <div class="form-container">
             <div class="form-group">
                 <label for="in-template">PILIH TEMPLAT EJEN</label>
