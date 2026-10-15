@@ -118,7 +118,7 @@
             background-image: url('mata_template_1.jpg');
         }
 
-        /* GAYA TEKS UNTUK MAKLUMAT BAHARU */
+        /* GAYA TEKS & SUSUNAN BARIS DEMI BARIS */
         .card-field {
             position: absolute;
             color: #ffffff;
@@ -130,27 +130,32 @@
             text-transform: uppercase;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
             line-height: 1;
+            left: 380px; /* Diseragamkan kedudukan melintang supaya selari ke bawah */
         }
 
-        /* KOORDINAT TEPAT SEBARIS DENGAN LABEL */
+        /* KEDUDUKAN MENEGAK (TOP) UNTUK SETIAP BARIS KAD */
         #out-nama {
-            top: 110px;   /* Sebaris tepat dengan NAMA: */
-            left: 300px;  /* Terletak di sebelah kanan titik bertindih */
+            top: 107px;  /* Baris 1: NAMA */
+        }
+
+        #out-id {
+            top: 140px;  /* Baris 2: NO ID */
         }
 
         #out-teras {
-            top: 176px;   /* Sebaris tepat dengan TERAS KHAS: */
-            left: 345px;  /* Ke kanan sedikit sebab kata 'TERAS KHAS' panjang */
+            top: 173px;  /* Baris 3: TERAS KHAS */
         }
 
         #out-negara {
-            top: 210px;   /* Sebaris tepat dengan NEGARA: */
-            left: 312px;  /* Terletak di sebelah kanan titik bertindih */
+            top: 206px;  /* Baris 4: NEGARA */
         }
 
         #out-tarikh {
-            top: 243px;   /* Sebaris tepat dengan TARIKH: */
-            left: 302px;  /* Terletak di sebelah kanan titik bertindih */
+            top: 239px;  /* Baris 5: TARIKH */
+        }
+
+        #out-status {
+            top: 272px;  /* Baris 6: STATUS */
         }
 
         @media (max-width: 650px) {
@@ -160,11 +165,14 @@
             }
             .card-field {
                 font-size: 7.5px;
+                left: 222px;
             }
-            #out-nama { top: 64px; left: 175px; }
-            #out-teras { top: 103px; left: 201px; }
-            #out-negara { top: 122px; left: 182px; }
-            #out-tarikh { top: 142px; left: 176px; }
+            #out-nama { top: 62px; }
+            #out-id { top: 81px; }
+            #out-teras { top: 101px; }
+            #out-negara { top: 120px; }
+            #out-tarikh { top: 139px; }
+            #out-status { top: 158px; }
         }
     </style>
 </head>
@@ -217,9 +225,11 @@
         <div class="preview-container">
             <div class="card-wrapper" id="mata-card">
                 <div class="card-field" id="out-nama">NUR AFIQAH</div>
+                <div class="card-field" id="out-id">M.A.T.A-07</div>
                 <div class="card-field" id="out-teras">NEURO</div>
                 <div class="card-field" id="out-negara">MALAYSIA</div>
                 <div class="card-field" id="out-tarikh">15/10/2026</div>
+                <div class="card-field" id="out-status">ACTIVE</div>
             </div>
         </div>
     </div>
